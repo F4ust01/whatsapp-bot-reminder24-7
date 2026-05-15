@@ -1,7 +1,6 @@
-# Imagen base de Debian con Node 18 — incluye las libs que necesita Chromium
 FROM node:18-bullseye-slim
 
-# Instalar todas las dependencias del sistema que necesita Chromium/Puppeteer
+# Instalar Chromium y todas sus dependencias desde apt
 RUN apt-get update && apt-get install -y \
     chromium \
     libglib2.0-0 \
@@ -30,25 +29,22 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-# Decirle a Puppeteer que NO descargue su propio Chrome,
-# sino que use el chromium que acabamos de instalar con apt
+# CRÍTICO: estas dos variables deben estar ANTES de npm install
+# para que Puppeteer no intente descargar Chrome durante la instalación
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_SKIP_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+ENV CHROME_PATH=/usr/bin/chromium
 
-# Directorio de trabajo dentro del container
 WORKDIR /app
 
-# Copiar package.json primero (para aprovechar cache de Docker)
 COPY package*.json ./
 
-# Instalar dependencias de Node
-RUN npm install
+# npm install con las variables ya seteadas — no descargará Chrome
+RUN npm install --omit=dev
 
-# Copiar el resto del código
 COPY . .
 
-# Exponer puerto (Railway lo requiere aunque el bot no sea un servidor HTTP)
 EXPOSE 3000
 
-# Comando de inicio
 CMD ["node", "index.js"]
