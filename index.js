@@ -52,23 +52,33 @@ const client = new Client({
     dataPath: '.wwebjs_auth' // carpeta donde se guarda la sesión
   }),
 
-  puppeteer: {
-    /**
-     * Argumentos necesarios para correr Chromium en entornos
-     * sin interfaz gráfica como Railway / Docker / servidores Linux.
-     */
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-accelerated-2d-canvas',
-      '--no-first-run',
-      '--no-zygote',
-      '--single-process', // Evita problemas de memoria en containers
-      '--disable-gpu'
-    ],
-    headless: true // Siempre true en producción
-  }
+puppeteer: {
+  args: [
+    '--no-sandbox',
+    '--disable-setuid-sandbox',
+    '--disable-dev-shm-usage',
+    '--disable-accelerated-2d-canvas',
+    '--no-first-run',
+    '--no-zygote',
+    '--single-process',
+    '--disable-gpu',
+    '--disable-software-rasterizer',
+    '--disable-extensions',
+    '--disable-background-networking',
+    '--disable-default-apps',
+    '--disable-sync',
+    '--disable-translate',
+    '--hide-scrollbars',
+    '--metrics-recording-only',
+    '--mute-audio',
+    '--no-default-browser-check',
+    '--safebrowsing-disable-auto-update'
+  ],
+  headless: true,
+  // Le dice a Puppeteer que use el Chrome que él mismo descargó
+  // en lugar de buscar uno del sistema
+  executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined
+}
 });
 
 // ============================================================
