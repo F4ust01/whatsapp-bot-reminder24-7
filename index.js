@@ -178,7 +178,7 @@ client.on('disconnected', (reason) => {
 // MODO DIAGNÓSTICO - Para obtener el ID del grupo
 // ============================================================
 
-/*
+
 client.on('message', async (msg) => {
   try {
     if (msg.from.endsWith('@g.us')) {
@@ -190,7 +190,7 @@ client.on('message', async (msg) => {
     console.error('[Bot] Error en diagnóstico:', error.message);
   }
 });
-*/
+
 
 // ============================================================
 // MANEJO DE ERRORES GLOBALES
