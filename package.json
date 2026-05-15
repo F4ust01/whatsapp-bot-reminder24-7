@@ -9,6 +9,9 @@
   "engines": {
     "node": ">=18.0.0"
   },
+   "config": {
+    "puppeteer_skip_chromium_download": "true"
+  },
   "dependencies": {
     "whatsapp-web.js": "^1.23.0",
     "qrcode-terminal": "^0.12.0",
