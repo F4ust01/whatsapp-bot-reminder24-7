@@ -42,6 +42,14 @@ const GROUP_ID = process.env.GROUP_ID || 'PEGA_AQUI_EL_ID_DEL_GRUPO@g.us';
 // INICIALIZACIÓN DEL CLIENTE
 // ============================================================
 
+// Limpiar el lock del perfil de Chromium si quedó de una sesión anterior
+const fs = require('fs');
+const lockFile = '/tmp/chromium-profile/SingletonLock';
+if (fs.existsSync(lockFile)) {
+  fs.unlinkSync(lockFile);
+  console.log('[Bot] 🧹 Lock de Chromium limpiado.');
+}
+
 const client = new Client({
   /**
    * LocalAuth guarda la sesión en el disco (.wwebjs_auth/).
