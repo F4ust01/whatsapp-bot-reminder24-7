@@ -61,23 +61,11 @@ puppeteer: {
     '--no-first-run',
     '--no-zygote',
     '--single-process',
-    '--disable-gpu',
-    '--disable-software-rasterizer',
-    '--disable-extensions',
-    '--disable-background-networking',
-    '--disable-default-apps',
-    '--disable-sync',
-    '--disable-translate',
-    '--hide-scrollbars',
-    '--metrics-recording-only',
-    '--mute-audio',
-    '--no-default-browser-check',
-    '--safebrowsing-disable-auto-update'
+    '--disable-gpu'
   ],
   headless: true,
-  // Le dice a Puppeteer que use el Chrome que él mismo descargó
-  // en lugar de buscar uno del sistema
-  executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined
+  // Usa el chromium del sistema instalado en el Dockerfile
+  executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium'
 }
 });
 
