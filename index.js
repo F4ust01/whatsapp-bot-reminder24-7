@@ -64,8 +64,7 @@ puppeteer: {
     '--disable-gpu'
   ],
   headless: true,
-  // Usa el chromium del sistema instalado en el Dockerfile
-  executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium'
+  executablePath: '/usr/bin/chromium'  // ruta fija, sin process.env
 }
 });
 
