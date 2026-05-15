@@ -34,7 +34,7 @@ function getTodayString() {
  */
 function startScheduler(client, groupId) {
   console.log('[Scheduler] ✅ Iniciando scheduler de recordatorios...');
-  console.log(`[Scheduler] 🕗 Tarea programada: todos los días a las 08:00 (zona horaria: ${process.env.TZ || 'UTC'})`);
+  console.log(`[Scheduler] 🕗 Tarea programada: todos los días a las 18:30 (zona horaria: ${process.env.TZ || 'UTC'})`);
 
   /**
    * Expresión cron: "0 8 * * *"
