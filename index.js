@@ -153,7 +153,7 @@ client.on('ready', () => {
   }
 
   startScheduler(client, GROUP_ID);
-
+/**
     // ⬇️ BLOQUE DE PRUEBA — borralo después de verificar
   setTimeout(async () => {
     console.log('[Bot] 🧪 Enviando mensaje de prueba...');
@@ -165,7 +165,7 @@ client.on('ready', () => {
     }
   }, 5000); // espera 5 segundos después de conectarse
   // ⬆️ FIN BLOQUE DE PRUEBA
-  
+  */
 });
 
 client.on('disconnected', (reason) => {
