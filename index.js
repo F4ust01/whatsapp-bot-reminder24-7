@@ -61,10 +61,14 @@ puppeteer: {
     '--no-first-run',
     '--no-zygote',
     '--single-process',
-    '--disable-gpu'
+    '--disable-gpu',
+    '--disable-background-networking',
+    // Usar carpeta temporal única para el perfil de Chromium
+    // Evita el error "profile is in use by another process"
+    '--user-data-dir=/tmp/chromium-profile'
   ],
   headless: true,
-  executablePath: '/usr/bin/chromium'  // ruta fija, sin process.env
+  executablePath: '/usr/bin/chromium'
 }
 });
 
